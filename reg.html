@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+       
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Food Delivery Agent Sign-Up</title>
+</head>
+<body>
+    <form action="#" method="post" class="signup-form">
+        <div class="two-forms">
+            <div class="input-box">
+                <input type="text" class="input-field" id="Fname" placeholder="Firstname">
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" id="Lname" placeholder="Lastname">
+                <i class="bx bx-user"></i>
+            </div>
+        </div>
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" name="mobile" required>
+
+        <label for="address">Address with Pincode:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="longitude">Longitude:</label>
+        <input type="text" id="longitude" name="longitude" required>
+
+        <label for="latitude">Latitude:</label>
+        <input type="text" id="latitude" name="latitude" required>
+
+        <label for="deliveryMode">Mode of Delivery:</label>
+        <select id="deliveryMode" name="deliveryMode" required>
+            <option value="bike">Bike</option>
+            <option value="car">Car</option>
+            <option value="walking">Walking</option>
+        </select>
+
+        <!-- Additional Fields -->
+        <!-- Include additional fields here -->
+
+        <button type="submit" id="submit">Submit</button>
+    </form>
+    <script type="module" >
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import {getDatabase, set, ref} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+const firebaseConfig = {
+  apiKey: "AIzaSyDJBAODXhYhIp4daXZgm3c4XfIkJ9JQZ3o",
+  authDomain: "signup-3c823.firebaseapp.com",
+  projectId: "signup-3c823",
+  storageBucket: "signup-3c823.appspot.com",
+  messagingSenderId: "932295824924",
+  appId: "1:932295824924:web:1b0588ece0f3ebfe3bb1d9",
+  measurementId: "G-1PLSGDNJLC",
+  databaseURL:'https://signup-3c823-default-rtdb.asia-southeast1.firebasedatabase.app/'
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+
+
+
+
+submit.addEventListener('click',(e)=>{
+    
+    var mobile=document.getElementById('mobile').value;
+    var address=document.getElementById('address').value;
+    var dob=document.getElementById('dob').value;
+    var city=document.getElementById('city').value;
+    var long=document.getElementById('longitude').value;
+    var latitude=document.getElementById('latitude').value;
+    var Fname=document.getElementById('Fname').value;
+    var Lname=document.getElementById('Lname').value;
+    var deliveryMode=document.getElementById('deliveryMode').value
+    const database =getDatabase(app);
+    set(ref(database,'users/'+Fname+Lname),{
+    Fname:Fname,
+    Lname:Lname,
+    mobile:mobile,
+    dob:dob,
+    address:address,
+    long:long,
+    latitude:latitude,
+    deliveryMode:deliveryMode,
+    city:city
+
+   })
+    
+})
+
+    </script>
+</body>
+
+</html>
+
